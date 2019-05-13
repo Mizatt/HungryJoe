@@ -1,0 +1,76 @@
+unit unitBase;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.WinXCtrls,
+  Vcl.Imaging.pngimage, Vcl.CategoryButtons, System.ImageList, Vcl.ImgList,
+  Vcl.StdCtrls, System.Actions, Vcl.ActnList, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+
+type
+  TExecutar = (Navegacao, sentencaSQL, exibePanels, desabilitaBotoes, habilitaBotoes, exibeBotoes);
+  TformBasico = class(TForm)
+    header: TImage;
+    footer: TImage;
+    SplitView1: TSplitView;
+    Panel1: TPanel;
+    imgMenu: TImage;
+    CategoryButtons1: TCategoryButtons;
+    ILMenuPrincipal: TImageList;
+    ILMenuPrincipalNegativo: TImageList;
+    ActionList1: TActionList;
+    actIncluir: TAction;
+    FDTabela: TFDTable;
+    procedure imgMenuClick(Sender: TObject);
+    procedure actIncluirExecute(Sender: TObject);
+  private
+    FExecutar: TExecutar;
+    procedure SetExecutar(const Value: TExecutar);
+  public
+    property Executar: TExecutar read FExecutar write SetExecutar;
+    { Public declarations }
+  end;
+
+var
+  formBasico: TformBasico;
+
+implementation
+
+{$R *.dfm}
+
+uses unitDM;
+
+procedure TformBasico.actIncluirExecute(Sender: TObject);
+begin
+  if FDTabela.Active = False then
+    begin
+      FDTabela.Open;
+    end;
+
+  FDTabela.Insert;
+  FDTabela.FieldByName('DATA_INC').AsDateTime := Date;
+
+end;
+
+procedure TformBasico.imgMenuClick(Sender: TObject);
+begin
+  if (SplitView1.Opened) then
+    begin
+      SplitView1.Close;
+    end
+  else
+    begin
+      SplitView1.Open;
+    end;
+end;
+
+procedure TformBasico.SetExecutar(const Value: TExecutar);
+begin
+
+end;
+
+end.

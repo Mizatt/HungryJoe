@@ -1,0 +1,33 @@
+object DM: TDM
+  OldCreateOrder = False
+  Height = 461
+  Width = 683
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'SERVER=HAMMERTIME'
+      'OSAuthent=Yes'
+      'ApplicationName=Enterprise/Architect/Ultimate'
+      'Workstation=HAMMERTIME'
+      'MARS=yes'
+      'DATABASE=HungryJoe'
+      'DriverID=MSSQL')
+    Connected = True
+    LoginPrompt = False
+    Transaction = FDTrans
+    Left = 128
+    Top = 48
+  end
+  object FDTrans: TFDTransaction
+    Connection = FDConnection1
+    Left = 224
+    Top = 48
+  end
+  object FDEstoque: TFDTable
+    IndexFieldNames = 'ID'
+    Connection = FDConnection1
+    UpdateOptions.UpdateTableName = 'HungryJoe.dbo.Produto'
+    TableName = 'HungryJoe.dbo.Produto'
+    Left = 224
+    Top = 120
+  end
+end
