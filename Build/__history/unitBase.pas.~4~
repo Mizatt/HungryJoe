@@ -1,0 +1,44 @@
+unit unitBase;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.WinXCtrls,
+  Vcl.Imaging.pngimage, Vcl.CategoryButtons;
+
+type
+  TformBasico = class(TForm)
+    header: TImage;
+    footer: TImage;
+    SplitView1: TSplitView;
+    Panel1: TPanel;
+    imgMenu: TImage;
+    CategoryButtons1: TCategoryButtons;
+    procedure imgMenuClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  formBasico: TformBasico;
+
+implementation
+
+{$R *.dfm}
+
+procedure TformBasico.imgMenuClick(Sender: TObject);
+begin
+  if (SplitView1.Opened) then
+    begin
+      SplitView1.Close;
+    end
+  else
+    begin
+      SplitView1.Open;
+    end;
+end;
+
+end.

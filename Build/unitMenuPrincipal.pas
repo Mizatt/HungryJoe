@@ -19,6 +19,7 @@ type
     procedure executarVendaClick(Sender: TObject);
     procedure IncluirCadastroClick(Sender: TObject);
     procedure Image2Click(Sender: TObject);
+    procedure abrirEstoqueClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,6 +35,12 @@ implementation
 
 uses unitBase, unitManutencaoUsuario, unitVenda, unitCadastraProduto,
   unitCadastroClientes, unitMenuPrincipal2;
+
+procedure TformMenuPrincipal.abrirEstoqueClick(Sender: TObject);
+begin
+  formCadastraProduto.Show;
+  self.Hide;
+end;
 
 procedure TformMenuPrincipal.executarVendaClick(Sender: TObject);
 begin

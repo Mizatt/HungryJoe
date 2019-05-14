@@ -3,23 +3,23 @@ inherited formCadastraProduto: TformCadastraProduto
   BorderIcons = []
   BorderStyle = bsNone
   Caption = 'formCadastraProduto'
-  ClientHeight = 508
-  ClientWidth = 1248
+  ClientHeight = 453
+  ClientWidth = 889
   Position = poScreenCenter
   WindowState = wsNormal
   OnActivate = FormActivate
   OnClose = FormClose
-  ExplicitWidth = 1248
-  ExplicitHeight = 508
+  ExplicitWidth = 889
+  ExplicitHeight = 453
   PixelsPerInch = 96
   TextHeight = 13
   inherited header: TImage
-    Width = 1248
+    Width = 889
     ExplicitWidth = 1256
   end
   inherited footer: TImage
-    Top = 458
-    Width = 1248
+    Top = 403
+    Width = 889
     ExplicitTop = 546
     ExplicitWidth = 1256
   end
@@ -155,11 +155,11 @@ inherited formCadastraProduto: TformCadastraProduto
     Transparent = True
   end
   inherited SplitView1: TSplitView
-    Height = 408
+    Height = 353
     ExplicitHeight = 408
     inherited CategoryButtons1: TCategoryButtons
       Left = 8
-      Height = 434
+      Height = 379
       BackgroundGradientDirection = gdVertical
       Categories = <
         item
@@ -168,10 +168,6 @@ inherited formCadastraProduto: TformCadastraProduto
           Items = <
             item
               Action = actIncluir
-            end
-            item
-              Action = actAlterar
-              Caption = '  Alterar'
             end
             item
               Action = actSalvar
@@ -187,32 +183,31 @@ inherited formCadastraProduto: TformCadastraProduto
             end>
         end>
       ExplicitLeft = 8
-      ExplicitHeight = 434
+      ExplicitHeight = 425
     end
   end
   inherited PNLFicha: TPanel
-    Width = 1048
-    Height = 408
+    Width = 689
+    Height = 353
     ExplicitWidth = 1048
     ExplicitHeight = 408
     inherited GroupBox1: TGroupBox
-      Width = 1035
-      Height = 396
+      Width = 676
+      Height = 341
       ExplicitWidth = 1035
       ExplicitHeight = 396
       object GroupBox2: TGroupBox
-        Left = 16
+        Left = 17
         Top = 16
-        Width = 1009
-        Height = 362
+        Width = 643
+        Height = 310
         Anchors = [akLeft, akTop, akRight, akBottom]
         TabOrder = 0
-        DesignSize = (
-          1009
-          362)
+        ExplicitWidth = 551
+        ExplicitHeight = 379
         object Label1: TLabel
-          Left = 504
-          Top = 122
+          Left = 24
+          Top = 221
           Width = 191
           Height = 22
           Caption = 'Categoria do produto:'
@@ -223,26 +218,11 @@ inherited formCadastraProduto: TformCadastraProduto
           Font.Style = []
           ParentFont = False
         end
-        object Label5: TLabel
-          Left = 743
-          Top = 64
-          Width = 125
-          Height = 22
-          Anchors = [akLeft, akTop, akRight]
-          Caption = 'Produto ativo?'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Raleway'
-          Font.Style = []
-          ParentFont = False
-        end
         object cadastroDescricao: TLabeledEdit
           Left = 24
-          Top = 64
-          Width = 713
+          Top = 48
+          Width = 593
           Height = 27
-          Anchors = [akLeft, akTop, akRight]
           DoubleBuffered = True
           EditLabel.Width = 193
           EditLabel.Height = 22
@@ -263,10 +243,10 @@ inherited formCadastraProduto: TformCadastraProduto
           TabOrder = 0
         end
         object cadastroValor: TLabeledEdit
-          Left = 24
-          Top = 153
-          Width = 467
-          Height = 27
+          Left = 336
+          Top = 249
+          Width = 281
+          Height = 30
           DoubleBuffered = True
           EditLabel.Width = 49
           EditLabel.Height = 22
@@ -288,8 +268,8 @@ inherited formCadastraProduto: TformCadastraProduto
         end
         object cadastroEstoqueMinimo: TLabeledEdit
           Left = 24
-          Top = 249
-          Width = 467
+          Top = 148
+          Width = 289
           Height = 27
           DoubleBuffered = True
           EditLabel.Width = 145
@@ -311,11 +291,10 @@ inherited formCadastraProduto: TformCadastraProduto
           TabOrder = 2
         end
         object cadastroEstoqueDisponivel: TLabeledEdit
-          Left = 504
-          Top = 249
-          Width = 481
+          Left = 336
+          Top = 148
+          Width = 281
           Height = 27
-          Anchors = [akLeft, akTop, akRight]
           DoubleBuffered = True
           EditLabel.Width = 170
           EditLabel.Height = 22
@@ -335,48 +314,32 @@ inherited formCadastraProduto: TformCadastraProduto
           ParentFont = False
           TabOrder = 3
         end
-        object Switch: TToggleSwitch
-          Left = 883
-          Top = 64
-          Width = 92
-          Height = 24
-          Anchors = [akLeft, akTop, akRight]
-          DoubleBuffered = True
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -19
-          Font.Name = 'Raleway'
-          Font.Style = []
-          ParentDoubleBuffered = False
-          ParentFont = False
-          StateCaptions.CaptionOn = 'Sim'
-          StateCaptions.CaptionOff = 'N'#227'o'
-          TabOrder = 4
-          OnClick = SwitchClick
-        end
       end
     end
   end
   object DBLookupComboBox1: TDBLookupComboBox [6]
-    Left = 726
-    Top = 225
-    Width = 481
+    Left = 247
+    Top = 321
+    Width = 289
     Height = 30
-    Anchors = [akLeft, akTop, akRight]
+    DataField = 'PRO_ID_CATEGORIA'
+    DataSource = DataSource1
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19
     Font.Name = 'Raleway'
     Font.Style = []
     KeyField = 'ID'
-    ListField = 'PRO_ID_CATEGORIA'
+    ListField = 'PRO_CATEGORIA'
     ListSource = DSProduto
     ParentFont = False
     TabOrder = 2
   end
   inherited ILMenuPrincipal: TImageList
+    Left = 600
+    Top = 72
     Bitmap = {
-      494C010107001800440040004000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107001800480040004000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000000100008000000001002000000000000000
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -4607,10 +4570,20 @@ inherited formCadastraProduto: TformCadastraProduto
       FFFFFFF00FFFFFFFFFFFFF0000FFFFFF00000000000000000000000000000000
       000000000000}
   end
+  inherited ILMenuPrincipalNegativo: TImageList
+    Left = 704
+    Top = 72
+  end
+  inherited ActionList1: TActionList
+    Left = 608
+    Top = 16
+  end
   inherited FDTabela: TFDTable
     IndexFieldNames = 'ID'
     UpdateOptions.UpdateTableName = 'HungryJoe.dbo.Produto'
     TableName = 'HungryJoe.dbo.Produto'
+    Left = 400
+    Top = 64
     object FDTabelaID: TFDAutoIncField
       FieldName = 'ID'
       Origin = 'ID'
@@ -4654,10 +4627,15 @@ inherited formCadastraProduto: TformCadastraProduto
       Origin = 'DATA_INC'
     end
   end
+  inherited DataSource1: TDataSource
+    Left = 464
+    Top = 64
+  end
   object FDQueryProduto: TFDQuery
+    Active = True
     Connection = DM.FDConnection1
     SQL.Strings = (
-      'SELECT * FROM Produto')
+      'SELECT * FROM PRODUTO_CATEGORIA')
     Left = 424
     Top = 8
   end

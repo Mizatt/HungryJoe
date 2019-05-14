@@ -23,8 +23,6 @@ type
     Label1: TLabel;
     FDQueryProduto: TFDQuery;
     DSProduto: TDataSource;
-    Switch: TToggleSwitch;
-    Label5: TLabel;
     FDTabelaID: TFDAutoIncField;
     FDTabelaSTATUS: TStringField;
     FDTabelaPRO_ID_CATEGORIA: TIntegerField;
@@ -38,7 +36,8 @@ type
     procedure actIncluirExecute(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure SwitchClick(Sender: TObject);
+    procedure actSalvarExecute(Sender: TObject);
+    procedure actCancelarExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -54,16 +53,41 @@ implementation
 
 uses unitLogin, unitDM, unitMenuPrincipal;
 
+procedure TformCadastraProduto.actCancelarExecute(Sender: TObject);
+begin
+  inherited;
+  actSair.Enabled := True;
+end;
+
 procedure TformCadastraProduto.actIncluirExecute(Sender: TObject);
 begin
   inherited;
   actAlterar.Enabled := False;
-  FDTabelaPRO_DESCRICAO.AsString := cadastroDescricao.Text;
-  FDTabelaPRO_VALOR.AsFloat := StrToFloat(cadastroValor.Text);
-  FDTabelaPRO_EST_MINIMO.AsInteger := StrToInt(cadastroEstoqueMinimo.Text);
-  FDTabelaPRO_ESTOQUE.AsInteger := StrToInt(cadastroEstoqueDisponivel.Text);
+  actSair.Enabled := False;
 end;
 
+
+procedure TformCadastraProduto.actSalvarExecute(Sender: TObject);
+begin
+  if (cadastroDescricao.Text = '') or (cadastroValor.Text = '') or (cadastroEstoqueMinimo.Text = '') or
+  (cadastroEstoqueDisponivel.Text = '') then
+    begin
+      Application.MessageBox('Há dados em branco. Confira e tente novamente.','Atenção',  MB_OK+MB_ICONERROR);
+    end
+  else
+    begin
+     FDTabelaPRO_DESCRICAO.AsString := cadastroDescricao.Text;
+     FDTabelaPRO_VALOR.AsFloat := StrToFloat(cadastroValor.Text);
+     FDTabelaPRO_EST_MINIMO.AsInteger := StrToInt(cadastroEstoqueMinimo.Text);
+     FDTabelaPRO_ESTOQUE.AsInteger := StrToInt(cadastroEstoqueDisponivel.Text);
+     inherited;
+     cadastroDescricao.Clear;
+     cadastroValor.Clear;
+     cadastroEstoqueMinimo.Clear;
+     cadastroEstoqueDisponivel.Clear;
+     actSair.Enabled := True;
+    end;
+end;
 
 procedure TformCadastraProduto.FormActivate(Sender: TObject);
 begin
@@ -78,17 +102,5 @@ begin
   formMenuPrincipal.Show;
 end;
 
-procedure TformCadastraProduto.SwitchClick(Sender: TObject);
-begin
-  inherited;
-  if Switch.State = tssOn then
-  begin
-    FDTabela.FieldByName('STATUS').AsString := 'A';
-  end
-  else
-  begin
-    FDTabela.FieldByName('STATUS').AsString := 'I';
-  end;
-end;
 
 end.

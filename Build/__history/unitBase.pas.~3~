@@ -1,0 +1,29 @@
+unit unitBase;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.WinXCtrls,
+  Vcl.Imaging.pngimage;
+
+type
+  TformBasico = class(TForm)
+    header: TImage;
+    footer: TImage;
+    SplitView1: TSplitView;
+    Panel1: TPanel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  formBasico: TformBasico;
+
+implementation
+
+{$R *.dfm}
+
+end.

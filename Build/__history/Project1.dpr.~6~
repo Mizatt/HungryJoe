@@ -1,0 +1,21 @@
+program Project1;
+
+uses
+  Vcl.Forms,
+  unitSplashScreen in 'unitSplashScreen.pas' {formSplashScreen},
+  unitMenuPrincipal in 'unitMenuPrincipal.pas' {formMenuPrincipal},
+  Vcl.Themes,
+  Vcl.Styles,
+  unitBase in 'unitBase.pas' {formBasico};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Windows10');
+  Application.CreateForm(TformSplashScreen, formSplashScreen);
+  Application.CreateForm(TformMenuPrincipal, formMenuPrincipal);
+  Application.CreateForm(TformBasico, formBasico);
+  Application.Run;
+end.

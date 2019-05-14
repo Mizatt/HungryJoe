@@ -4,7 +4,7 @@ object DM: TDM
   Width = 683
   object FDConnection1: TFDConnection
     Params.Strings = (
-      'SERVER=HAMMERTIME'
+      'SERVER=MATHEUS-PC'
       'OSAuthent=Yes'
       'ApplicationName=Enterprise/Architect/Ultimate'
       'Workstation=HAMMERTIME'

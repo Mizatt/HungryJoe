@@ -6981,7 +6981,7 @@ object formCriaConta: TformCriaConta
       TabOrder = 0
     end
     object senhaDoUsuario: TEdit
-      Left = 3
+      Left = 9
       Top = 163
       Width = 274
       Height = 31
