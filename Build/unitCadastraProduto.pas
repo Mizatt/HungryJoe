@@ -26,7 +26,6 @@ type
     FDTabelaID: TFDAutoIncField;
     FDTabelaSTATUS: TStringField;
     FDTabelaPRO_ID_CATEGORIA: TIntegerField;
-    FDTabelaPRO_ID_FORNECEDOR: TIntegerField;
     FDTabelaPRO_DESCRICAO: TStringField;
     FDTabelaPRO_VALOR: TBCDField;
     FDTabelaPRO_EST_MINIMO: TIntegerField;

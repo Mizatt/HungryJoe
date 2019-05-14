@@ -156,7 +156,7 @@ inherited formCadastraProduto: TformCadastraProduto
   end
   inherited SplitView1: TSplitView
     Height = 353
-    ExplicitHeight = 408
+    ExplicitHeight = 353
     inherited CategoryButtons1: TCategoryButtons
       Left = 8
       Height = 379
@@ -183,19 +183,19 @@ inherited formCadastraProduto: TformCadastraProduto
             end>
         end>
       ExplicitLeft = 8
-      ExplicitHeight = 425
+      ExplicitHeight = 379
     end
   end
   inherited PNLFicha: TPanel
     Width = 689
     Height = 353
-    ExplicitWidth = 1048
-    ExplicitHeight = 408
+    ExplicitWidth = 689
+    ExplicitHeight = 353
     inherited GroupBox1: TGroupBox
       Width = 676
       Height = 341
-      ExplicitWidth = 1035
-      ExplicitHeight = 396
+      ExplicitWidth = 676
+      ExplicitHeight = 341
       object GroupBox2: TGroupBox
         Left = 17
         Top = 16
@@ -203,8 +203,6 @@ inherited formCadastraProduto: TformCadastraProduto
         Height = 310
         Anchors = [akLeft, akTop, akRight, akBottom]
         TabOrder = 0
-        ExplicitWidth = 551
-        ExplicitHeight = 379
         object Label1: TLabel
           Left = 24
           Top = 221
@@ -246,7 +244,7 @@ inherited formCadastraProduto: TformCadastraProduto
           Left = 336
           Top = 249
           Width = 281
-          Height = 30
+          Height = 27
           DoubleBuffered = True
           EditLabel.Width = 49
           EditLabel.Height = 22
@@ -339,7 +337,7 @@ inherited formCadastraProduto: TformCadastraProduto
     Left = 600
     Top = 72
     Bitmap = {
-      494C010107001800480040004000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101070018004C0040004000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000000100008000000001002000000000000000
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -4598,10 +4596,6 @@ inherited formCadastraProduto: TformCadastraProduto
     object FDTabelaPRO_ID_CATEGORIA: TIntegerField
       FieldName = 'PRO_ID_CATEGORIA'
       Origin = 'PRO_ID_CATEGORIA'
-    end
-    object FDTabelaPRO_ID_FORNECEDOR: TIntegerField
-      FieldName = 'PRO_ID_FORNECEDOR'
-      Origin = 'PRO_ID_FORNECEDOR'
     end
     object FDTabelaPRO_DESCRICAO: TStringField
       FieldName = 'PRO_DESCRICAO'
