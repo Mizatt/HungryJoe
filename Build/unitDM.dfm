@@ -45,10 +45,6 @@ object DM: TDM
       FieldName = 'PRO_ID_CATEGORIA'
       Origin = 'PRO_ID_CATEGORIA'
     end
-    object FDEstoquePRO_ID_FORNECEDOR: TIntegerField
-      FieldName = 'PRO_ID_FORNECEDOR'
-      Origin = 'PRO_ID_FORNECEDOR'
-    end
     object FDEstoquePRO_DESCRICAO: TStringField
       FieldName = 'PRO_DESCRICAO'
       Origin = 'PRO_DESCRICAO'

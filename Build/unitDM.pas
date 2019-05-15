@@ -18,7 +18,6 @@ type
     FDEstoqueID: TFDAutoIncField;
     FDEstoqueSTATUS: TStringField;
     FDEstoquePRO_ID_CATEGORIA: TIntegerField;
-    FDEstoquePRO_ID_FORNECEDOR: TIntegerField;
     FDEstoquePRO_DESCRICAO: TStringField;
     FDEstoquePRO_VALOR: TBCDField;
     FDEstoquePRO_EST_MINIMO: TIntegerField;

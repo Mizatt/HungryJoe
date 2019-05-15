@@ -10,7 +10,7 @@ uses
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, System.Actions,
   Vcl.ActnList, System.ImageList, Vcl.ImgList, Vcl.StdCtrls, Vcl.ExtCtrls,
   Vcl.CategoryButtons, Vcl.WinXCtrls, Vcl.Imaging.pngimage, Vcl.Mask,
-  Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons;
+  Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons, frxClass;
 
 type
   TformVenda = class(TformBasico)
@@ -63,6 +63,7 @@ type
     FDTabelaItensVI_QTDE: TIntegerField;
     FDTabelaItensVI_VALOR_TOTAL: TBCDField;
     FDTabelaItensNomeProduto: TStringField;
+    frxReport1: TfrxReport;
     procedure botaoExcluirClick(Sender: TObject);
     procedure botaoAdicionarClick(Sender: TObject);
     procedure botaoCancelarClick(Sender: TObject);
@@ -76,6 +77,8 @@ type
     procedure actIncluirExecute(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure actCancelarExecute(Sender: TObject);
+    procedure actSalvarExecute(Sender: TObject);
+    procedure DBEdit5Exit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -106,11 +109,27 @@ begin
   FDTabela.Post;
   FDTabela.Edit;
   FDTabelaVEN_VAL_DESC.AsFloat := 0;
-
+  actSalvar.Enabled := False;
   botaoAdicionar.Enabled := True;
   botaoExcluir.Enabled := False;
   botaoConfirmar.Enabled := False;
   botaoCancelar.Enabled := False;
+end;
+
+procedure TformVenda.actSalvarExecute(Sender: TObject);
+begin
+  if not (FDTabela.State in [dsInsert, dsEdit]) then
+    begin
+      mensagem := 'Não há um pedido em aberto. Abra um pedido e aí tente salvar novamente.';
+      Application.MessageBox(PChar(mensagem), 'Atenção', MB_OK + MB_ICONWARNING);
+      Abort;
+    end
+  else
+    begin
+      inherited;
+      GroupBox2.Hide;
+      GroupBox3.Hide;
+    end;
 end;
 
 procedure TformVenda.botaoAdicionarClick(Sender: TObject);
@@ -149,7 +168,20 @@ begin
       Application.MessageBox(PChar(mensagem), 'Atenção', MB_OK + MB_ICONWARNING);
       Abort;
     end;
-    botaoAdicionar.Enabled := True;
+  if DBEdit1.Text = '' then
+    begin
+      mensagem := 'O campo cliente não pode ser deixado em branco.';
+      Application.MessageBox(PChar(mensagem), 'Atenção', MB_OK + MB_ICONWARNING);
+      Abort;
+    end;
+  if DBEdit2.Text = '' then
+    begin
+      mensagem := 'O campo vendedor não pode ser deixado em branco.';
+      Application.MessageBox(PChar(mensagem), 'Atenção', MB_OK + MB_ICONWARNING);
+      Abort;
+    end;
+
+  botaoAdicionar.Enabled := True;
   botaoExcluir.Enabled := True;
   botaoConfirmar.Enabled := False;
   botaoCancelar.Enabled := False;
@@ -161,6 +193,7 @@ begin
   DM.FDEstoque.Edit;
   DM.FDEstoquePRO_ESTOQUE.AsInteger := DM.FDEstoquePRO_ESTOQUE.AsInteger - FDTabelaItensVI_QTDE.AsInteger;
   DM.FDEstoque.Post;
+  actSalvar.Enabled := True;
 end;
 
 procedure TformVenda.botaoExcluirClick(Sender: TObject);
@@ -172,8 +205,7 @@ begin
   botaoCancelar.Enabled := False;
 
   DM.FDEstoque.Close;
-  DM.FDEstoque.Filter := 'ID = ';
-  FDTabelaItensVI_ID_PRODUTO.AsString;
+  DM.FDEstoque.Filter := 'ID = ' + FDTabelaItensVI_ID_PRODUTO.AsString;
   DM.FDEstoque.Filtered := True;
   DM.FDEstoque.Open();
 
@@ -186,6 +218,15 @@ begin
   mensagem := 'Você removeu o produto do carrinho. O estoque não foi afetado. ';
 
   Application.MessageBox(Pchar(mensagem), 'Informação', MB_OK + MB_ICONINFORMATION);
+end;
+
+procedure TformVenda.DBEdit5Exit(Sender: TObject);
+var ValTotal, Quantidade, ValorUnt: Real;
+begin
+  Quantidade := StrToFloat(DBEdit5.Text);
+  ValorUnt := StrToFloat(DBEdit4.Text);
+  ValTotal := Quantidade * ValorUnt;
+  DBEdit6.Text := FloatToStr(ValTotal);
 end;
 
 procedure TformVenda.FDTabelaItensAfterDelete(DataSet: TDataSet);
